@@ -22,20 +22,23 @@ class   CartModelRepository implements CartRepository{
      }
 
      public function add($product,$quantity=1)
+
      {
          Cart::create([
              'user_id'=>Auth::guard('customer')->user()->id,
              'product_id'=>$product,
              'quantity'=>$quantity,
 
+
          ]);
      }
 
      public function update(Product $product, $quantity)
      {
-         Cart::where('product_id',$product->id)->update([
-             'quantity'=>$quantity,
 
+
+         Cart::query()->where('product_id',$product->id)->update([
+             'quantity'=>$quantity,
          ]);
      }
 

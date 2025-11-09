@@ -26,32 +26,35 @@ class CartController extends Controller
         ]);
         $items=Cart::where('product_id',$request->product_id)->first();
 if ($items){
-     return $items->increment('quantity',$request->post('quantity'));
+      $items->increment('quantity',$request->post('quantity'));
 
 }else{
     $cart=new CartModelRepository();
     $cart->add($request->product_id,$request->post('quantity'));
 }
 
+        return response()->json(['success' => true]);
 
     }
-    public function update(Request $request,$product){
+    public function update(Request $request,$productId){
 
         $request->validate([
-            'quantity'=>'nullable|min:1'
-
+            'quantity' => 'required|min:1'
         ]);
-        $product=Product::find($product->id);
-        $cart=App::make('cart');
-        $cart->update($product,$request->post('quantity'));
 
+        $product = Product::findOrFail($productId);
+
+        $cart = App::make('cart');
+        $cart->update($product, $request->quantity);
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
     public function destroy($id){
         $cart=App::make('cart');
         $cart->delete($id);
 
     }
-    public function checkout(){
-        return view('user.checkout');
-    }
+
 }

@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Cookie;
 use function Laravel\Prompts\confirm;
 use function view;
 
-class PaymentController extends Controller
+class PaymentController extends Controller implements \App\service\payment
 {
     public function create(Order $order){
         return view('user.payment',get_defined_vars());
     }
-    public function createstrippaymentintent(Request $request ,Order$order){
+    public function paymentprocess(Request $request ,Order$order){
 
         $cart=\App\Facads\cart::total();
         try {
@@ -32,7 +32,6 @@ class PaymentController extends Controller
 
             $output = [
                 'clientSecret' => $payment->client_secret,
-                // [DEV]: For demo purposes only, you should avoid exposing the PaymentIntent ID in the client-side code.
                 'dpmCheckerLink' => "https://dashboard.stripe.com/settings/payment_methods/review?transaction_id={$payment->id}",
             ];
               $cofirmpayment=$stripe->paymentIntents->confirm(

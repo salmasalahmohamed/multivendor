@@ -1,6 +1,6 @@
 @extends('layout.main')
 @section('content')
-    <form action="{{route('product.update',[$product])}}" method="post"  enctype="multipart/form-data">
+    <form action="{{route('product.update',[$product->id])}}" method="post"  enctype="multipart/form-data">
         @csrf
 
         <x-form.input name="logo" type="file" class="file center-block" category="{{$product->logo}}"></x-form.input>

@@ -31,7 +31,7 @@
                         <h3>No Account? Register</h3>
                         <p>Registration takes less than a minute but gives you full control over your orders.</p>
                     </div>
-                    <form class="row" action="{{url('/customer/register')}}" method="post">
+                    <form class="row" action="{{url('customer/register')}}" method="post">
                         @csrf
                         <div class="col-sm-6">
                             <div class="form-group">

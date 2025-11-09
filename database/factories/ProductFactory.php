@@ -24,14 +24,15 @@ class ProductFactory extends Factory
 $store=Store::all()->pluck('id')->toArray();
 
         return [
+
             'name'=>$name,
             'slug'=>Str::slug($name),
             'description'=>$this->faker->sentence,
             'logo'=>$this->faker->imageUrl(300,300),
             'price'=>$this->faker->randomFloat(1,1,999),
             'compare_price'=>$this->faker->randomFloat(1,1,999),
-            'category_id'=>$this->faker->randomElement($category),
-            'store_id'=>$this->faker->randomElement($store),
+            'category_id' => !empty($categoryIds) ? $this->faker->randomElement($categoryIds) : null,
+            'store_id' => !empty($storeIds) ? $this->faker->randomElement($storeIds) : null,
             'feature'=>rand(0,1),
             'rating'=>$this->faker->randomFloat(),
 

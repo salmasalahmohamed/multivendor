@@ -9,7 +9,6 @@ class login{
             'email' => 'required|email',
             'password' => 'required|min:6'
         ]);
-
         // Attempt to log the user in
         if (Auth::guard('customer')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->intended(route('home'));

@@ -21,6 +21,10 @@ return[
         'title'=>'product show'
     ],
 
-
+    [
+        'icon'=>'nav-item',
+        'route'=>'store.create',
+        'title'=>'create store'
+    ],
 
 ];

@@ -29,11 +29,13 @@ class ProductController extends Controller
         $id=[];
         $product->update($request->except('tag'));
            $tags=json_decode($request->post('tag'),true);
-           foreach ($tags as $key=>$tag) {
+
+        foreach ($tags as $key=>$tag) {
+
                $slug = Str::slug($tag['value']);
 
-               $exist_tag = Tag::where('name', $tag);
-               if (isset($exist_tag)) {
+               $exist_tag = Tag::where('name', $tag)->first();
+               if (!isset($exist_tag)) {
                    $new_tag = Tag::create([
                        'name' => $tag['value'],
                        'slug' => $slug

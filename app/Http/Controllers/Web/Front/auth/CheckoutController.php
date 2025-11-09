@@ -57,13 +57,13 @@ $items=$carts->groupBy('product.store_id');
                     $address['type']=$type;
                     $address['order_id']=$order->id;
 
-                    $order->addresses()->insert([$address]);
+                    $order->addresses()->create($address);
                 }
             }
             //$user=User::where('store_id',$order->store_id)->first();
             //$user->notify(new OrderCreatedNotification($order));
 
-            event(new OrderCreated($carts));
+//            event(new OrderCreated($carts));
             DB::commit();
 
 
@@ -71,7 +71,7 @@ $items=$carts->groupBy('product.store_id');
         }catch (Exception $exception){
             DB::rollBack();
 
-            return $exception->getMessage();
+            throw $exception;
         }
         return redirect('payment/'.$order->id);
 

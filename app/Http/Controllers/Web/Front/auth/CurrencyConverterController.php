@@ -27,7 +27,6 @@ public function store(Request$request){
         Cache::put('currency_rates',$rate,now()->addMinutes(90));
 
     }
-    //session store the value for same user //cache for multiple
     Session::put('currency_code',$currency_code);
 
 }

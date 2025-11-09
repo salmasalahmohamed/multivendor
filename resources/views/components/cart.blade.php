@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section-title">
-                    <h2>Trending Product</h2>
+                    <h2>Trending Product salma</h2>
                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have
                         suffered alteration in some form.</p>
                 </div>
@@ -19,14 +19,15 @@
                         <div class="product-image">
                             <img src="{{$product->logo_url}}" alt="#">
                             <span class="sale-tag">-{{$product->percent()}}%</span>
-                            <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                            <div >
                             </div>
                         </div>
                         <div class="product-info">
+
                             <span class="category">{{$product->category->name}}%</span>
                             <h4 class="title">
-                                <a href="{{url(\Illuminate\Support\Facades\App::getLocale().'/product/'.$product->slug)}}">{{$product->name}}</a>
+                                <a href="{{route('product',[$product->slug])}}"> click here
+                                {{$product->name}}</a>
                             </h4>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
